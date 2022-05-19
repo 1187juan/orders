@@ -10,6 +10,10 @@
 		"lint": "eslint --fix . --ext .js,.jsx"
 	},
 	"dependencies": {
+		"@chakra-ui/react": "^2.0.2",
+		"@emotion/react": "^11",
+		"@emotion/styled": "^11",
+		"framer-motion": "^6",
 		"react": "18.0.0",
 		"react-dom": "18.0.0"
 	},
