@@ -1,3 +1,9 @@
+import { Header } from '../components/layouts'
+
 export const HomePage = () => {
-	return <div>HomePage</div>
+	return (
+		<>
+			<Header />
+		</>
+	)
 }
