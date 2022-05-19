@@ -1,3 +1,5 @@
+import { GridOrders } from '../components/layouts'
+
 export const HomePage = () => {
-	return <>homepage</>
+	return <GridOrders />
 }
