@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Header } from '../components/layouts'
-import { HomePage } from '../pages/HomePage'
+import { HomePage, OrderDetailsPage } from '../pages'
 
 export const AppRouter = () => {
 	return (
@@ -8,7 +8,7 @@ export const AppRouter = () => {
 			<Header />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
-				<Route path='/order/:order' element={<div>product</div>} />
+				<Route path='/order/:orderId' element={<OrderDetailsPage />} />
 				<Route path='/*' element={<div>error 404</div>} />
 			</Routes>
 		</BrowserRouter>
