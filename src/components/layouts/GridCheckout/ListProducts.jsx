@@ -3,7 +3,7 @@ import { ListProductsItem } from './ListProductsItem'
 
 export const ListProducts = ({ products }) => {
 	return (
-		<VStack as='ul' bgColor='white' borderRadius='base'>
+		<VStack as='ul' bgColor='white' borderRadius='base' flexGrow='4'>
 			{products.map(product => (
 				<ListProductsItem
 					key={product.id}

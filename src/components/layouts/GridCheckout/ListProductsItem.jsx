@@ -6,6 +6,7 @@ export const ListProductsItem = ({ name, sku, quantity, price, currency }) => {
 			<Flex
 				as='li'
 				justifyContent='space-between'
+				gap={4}
 				w='100%'
 				alignItems='center'
 				pos='relative'

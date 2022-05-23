@@ -2,7 +2,7 @@ import {
 	Box,
 	Button,
 	Divider,
-	Grid,
+	Flex,
 	Heading,
 	Text,
 	useToast,
@@ -17,13 +17,15 @@ export const OrderSummary = ({
 }) => {
 	const toast = useToast()
 	return (
-		<Grid
+		<Flex
 			as='section'
-			h='max-content'
-			gap='1rem'
-			bg='white'
-			borderRadius='base'
+			w='auto'
 			p='1.5rem'
+			gap='1rem'
+			direction='column'
+			flexGrow='1'
+			borderRadius='base'
+			bg='white'
 		>
 			<Heading as='h1' fontSize='x-large' mb='1rem'>
 				Resumen de compra
@@ -70,6 +72,6 @@ export const OrderSummary = ({
 			>
 				Pagar
 			</Button>
-		</Grid>
+		</Flex>
 	)
 }

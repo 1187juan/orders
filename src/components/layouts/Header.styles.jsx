@@ -1,10 +1,8 @@
 import styled from '@emotion/styled'
 
 export const Nav = styled('nav')({
-	width: '100%',
+	width: 'min(100% - 2rem, 1024px)',
 	height: '100%',
-	maxWidth: '1024px',
-	padding: '0 1rem',
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
