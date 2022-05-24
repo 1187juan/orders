@@ -1,9 +1,14 @@
 import { VStack } from '@chakra-ui/react'
-import { AddProduct } from '../../../components'
+import { useQueryClient } from 'react-query'
+import { AddProduct } from '../../components'
 import { ListProductsItem } from './ListProductsItem'
 
-export const ListProducts = ({ products }) => {
-	console.log(products)
+export const ListProducts = ({ orderId }) => {
+	const queryClient = useQueryClient()
+	const orders = queryClient.getQueryData(['orders'])
+	const order = orders.find(order => order.id === orderId)
+	const { products } = order
+
 	return (
 		<VStack as='ul' bgColor='white' borderRadius='base' flexGrow='4' pb='1rem'>
 			{products.map(product => (
@@ -16,7 +21,7 @@ export const ListProducts = ({ products }) => {
 					currency={product.currency}
 				/>
 			))}
-			<AddProduct />
+			<AddProduct orderId={orderId} />
 		</VStack>
 	)
 }

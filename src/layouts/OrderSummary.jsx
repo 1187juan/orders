@@ -7,14 +7,12 @@ import {
 	Text,
 	useToast,
 } from '@chakra-ui/react'
+import { useQueryClient } from 'react-query'
 
-export const OrderSummary = ({
-	subtotal,
-	tax,
-	name,
-	total,
-	currency = 'MXN',
-}) => {
+export const OrderSummary = ({ orderId }) => {
+	const queryClient = useQueryClient()
+	const orders = queryClient.getQueryData(['orders'])
+	const order = orders.find(order => order.id === orderId)
 	const toast = useToast()
 	return (
 		<Flex
@@ -36,13 +34,13 @@ export const OrderSummary = ({
 			<Text display='flex' justifyContent='space-between'>
 				<Box as='span'>Subtotal</Box>
 				<Box as='span' fontWeight='bold'>
-					{subtotal}
+					{order.totals.subtotal}
 				</Box>
 			</Text>
 			<Text display='flex' justifyContent='space-between'>
 				<Box as='span'>Impuestos</Box>
 				<Box as='span' fontWeight='bold'>
-					{tax}
+					{order.totals.tax}
 				</Box>
 			</Text>
 			<Divider />
@@ -55,7 +53,7 @@ export const OrderSummary = ({
 			>
 				<Box as='span'>Total</Box>
 				<Box as='span' fontWeight='bold'>
-					{total && `$${total} ${currency}`}
+					{order.totals.total && `$${order.totals.total} ${order.currency}`}
 				</Box>
 			</Heading>
 

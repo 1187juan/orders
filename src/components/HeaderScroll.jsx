@@ -1,5 +1,5 @@
+import { Box } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
-import { Header } from './HeaderScroll.styles'
 
 const limitRange = (num, bottomLimit) => {
 	if (num > 0) return 0
@@ -60,5 +60,20 @@ export const HeaderScroll = ({ children }) => {
 		return () => document.removeEventListener('scroll', scroll)
 	}, [])
 
-	return <Header ref={ref}>{children}</Header>
+	return (
+		<Box
+			ref={ref}
+			position='sticky'
+			top='0px'
+			zIndex={1}
+			width='auto'
+			height='64px'
+			display='flex'
+			justifyContent='center'
+			alignItems='center'
+			backgroundColor='white'
+		>
+			{children}
+		</Box>
+	)
 }

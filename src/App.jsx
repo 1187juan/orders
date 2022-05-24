@@ -1,7 +1,7 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { OrdersProvider } from './components/layouts'
+import { OrdersProvider } from './layouts'
 import { AppRouter } from './routes/AppRouter'
 import theme from './theme'
 

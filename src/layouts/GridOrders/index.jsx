@@ -4,7 +4,7 @@ import { GridOrdersItem } from './GridOrdersItem'
 
 export const GridOrders = () => {
 	const queryClient = useQueryClient()
-	const { orders } = queryClient.getQueryData(['orders'])
+	const orders = queryClient.getQueryData(['orders'])
 
 	return (
 		<Grid

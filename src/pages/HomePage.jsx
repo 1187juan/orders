@@ -1,4 +1,4 @@
-import { GridOrders } from '../components/layouts'
+import { GridOrders } from '../layouts'
 import Lottie from 'lottie-react'
 import sendAnim from '../lotties/90409-delivery-truck.json'
 import { Grid, Heading } from '@chakra-ui/react'

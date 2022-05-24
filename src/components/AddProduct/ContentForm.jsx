@@ -8,10 +8,26 @@ import {
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
+	Alert,
+	AlertIcon,
+	AlertTitle,
+	AlertDescription,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import { useMutation, useQueryClient } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+import { updateOrder } from '../../services/updateOrder'
 
-export const ContentForm = ({ onClose }) => {
+export const ContentForm = ({ onClose, orderId }) => {
+	const queryClient = useQueryClient()
+	const orders = queryClient.getQueryData(['orders'])
+	const order = orders.find(order => order.id === orderId)
+	const navigate = useNavigate()
+
+	const { mutate, error, isLoading } = useMutation(updateOrder, {
+		onSuccess: () => queryClient.invalidateQueries(['orders']),
+	})
+
 	const {
 		register,
 		handleSubmit,
@@ -19,7 +35,30 @@ export const ContentForm = ({ onClose }) => {
 	} = useForm()
 
 	const onSubmit = e => {
-		console.log(e)
+		const id = parseInt(Math.random() * 10000000000000).toString()
+		mutate(
+			{
+				...order,
+				products: [
+					...order.products,
+					{
+						id,
+						sku: e.sku,
+						name: e.name,
+						quantity: e.quantity,
+						price: e.price,
+						currency: 'MXN',
+					},
+				],
+			},
+			{
+				onSuccess: () => {
+					navigate('/order/' + orderId)
+
+					onClose()
+				},
+			}
+		)
 	}
 
 	return (
@@ -27,6 +66,15 @@ export const ContentForm = ({ onClose }) => {
 			<ModalHeader>Producto</ModalHeader>
 			<ModalCloseButton />
 			<ModalBody display='grid' gap='1rem'>
+				{error && (
+					<Alert status='error'>
+						<AlertIcon />
+						<AlertTitle>Error</AlertTitle>
+						<AlertDescription>
+							Error al agregar el producto, intentalo más tarde.
+						</AlertDescription>
+					</Alert>
+				)}
 				<FormControl>
 					<Input
 						variant='filled'
@@ -99,7 +147,9 @@ export const ContentForm = ({ onClose }) => {
 				<Button onClick={onClose} colorScheme='gray'>
 					Cancelar
 				</Button>
-				<Button type='submit'>Enviar</Button>
+				<Button type='submit' disabled={isLoading}>
+					Enviar
+				</Button>
 			</ModalFooter>
 		</ModalContent>
 	)

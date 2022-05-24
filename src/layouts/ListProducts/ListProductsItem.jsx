@@ -12,12 +12,14 @@ export const ListProductsItem = ({ name, sku, quantity, price, currency }) => {
 				pos='relative'
 				p={4}
 			>
-				<Box>
+				<Box flexGrow={1}>
 					<Text fontWeight='bold'>{name}</Text>
 					<Text>{sku}</Text>
 				</Box>
 				<Box>{quantity}</Box>
-				<Box>{price + ' ' + currency}</Box>
+				<Box width='100px' textAlign='right'>
+					{price + ' ' + currency}
+				</Box>
 			</Flex>
 			<Divider />
 		</>

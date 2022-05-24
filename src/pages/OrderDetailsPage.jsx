@@ -1,30 +1,14 @@
 import { useParams } from 'react-router-dom'
-import { GridCheckout } from '../components/layouts'
-import { useQueryClient } from 'react-query'
+import { Flex } from '@chakra-ui/react'
+import { ListProducts, OrderSummary } from '../layouts'
 
 export const OrderDetailsPage = () => {
 	const { orderId } = useParams()
-	const queryClient = useQueryClient()
-	const { orders } = queryClient.getQueryData(['orders'])
 
-	const order = orders.find(order => order.id === orderId)
-
-	const totals = {
-		total: order.totals.total,
-		tax: order.totals.tax,
-		subtotal: order.totals.subtotal,
-		name: order.name,
-		currency: order.currency,
-	}
-
-	const products = order.items.map(item => ({
-		id: item.id,
-		sku: item.sku,
-		name: item.name,
-		quantity: item.quantity,
-		price: item.price,
-		currency: order.currency,
-	}))
-
-	return <GridCheckout totals={totals} products={products} />
+	return (
+		<Flex wrap='wrap' gap='1rem' w='min(100%, 1024px)' mx='auto' mt='1rem'>
+			<ListProducts orderId={orderId} />
+			<OrderSummary orderId={orderId} />
+		</Flex>
+	)
 }

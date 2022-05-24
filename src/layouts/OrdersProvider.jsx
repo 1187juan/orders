@@ -8,7 +8,7 @@ import {
 	Progress,
 } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import { getOrders } from '../../services/getOrders'
+import { getOrders } from '../services/getOrders'
 
 export const OrdersProvider = ({ children }) => {
 	const { isLoading, error, refetch } = useQuery(['orders'], getOrders, {
