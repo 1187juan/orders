@@ -1,10 +1,23 @@
 import { Box, Heading } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { HeaderScroll } from '../components'
+import { useScrollHide } from '../hooks/useScrollHide'
 
 export const Header = () => {
+	const ref = useScrollHide()
 	return (
-		<HeaderScroll>
+		<Box
+			as='header'
+			ref={ref}
+			position='sticky'
+			top='0px'
+			zIndex={1}
+			width='auto'
+			height='64px'
+			display='flex'
+			justifyContent='center'
+			alignItems='center'
+			backgroundColor='white'
+		>
 			<Box
 				as='nav'
 				width='min(100% - 2rem, 1024px)'
@@ -19,6 +32,6 @@ export const Header = () => {
 					</Heading>
 				</Link>
 			</Box>
-		</HeaderScroll>
+		</Box>
 	)
 }
